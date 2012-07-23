@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx.xsd
+						http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop.xsd
+						http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd ">
+
+	<context:property-placeholder location="org/elliot/dao/hibernate/system.properties"/>
+	<!-- DBCP -->
+	<!-- 
+	<bean id="dbcpDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClass}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	 -->
+	<!-- BoneCP -->
+	<!--  -->
+	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
+		<property name="driverClass" value="${jdbc.driverClass}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="partitionCount" value="2"/>
+		<property name="maxConnectionsPerPartition" value="5"/>
+		<property name="minConnectionsPerPartition" value="2"/>
+		<property name="statementsCacheSize" value="5" />
+	</bean>
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+		<!--
+			<tx:method name="save*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />-->
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="page*" read-only="true" />
+			<tx:method name="*" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>  
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* tw.elliot.dao.spring..*(..))"/>
+	</aop:config>
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg index="0" ref="dataSource"/>
+	</bean>
+	<bean id="userDao" class="tw.elliot.dao.spring.SpringUserDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+</beans>
