@@ -5,19 +5,17 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import tw.elliot.domain.User;
 import tw.elliot.domain.support.Condition;
 import tw.elliot.domain.support.LikeMode;
 import tw.elliot.domain.support.Page;
 
 public class AbstractBaseDao<T, Oid extends Serializable> {
-	@Autowired
+	@PersistenceContext
 	protected EntityManager entityManager;
 	
 	protected Class<T> domainClass;
@@ -28,19 +26,19 @@ public class AbstractBaseDao<T, Oid extends Serializable> {
 	}
 	
 	public T findByOid(Oid oid) {
-		return this.entityManager.find(domainClass, oid);
+		return this.getEntityManager().find(domainClass, oid);
 	}
 
 	public void create(T entity) {
-		this.entityManager.persist(entity);
+		this.getEntityManager().persist(entity);
 	}
 
 	public void delete(T entity) {
-		this.entityManager.remove(entity);
+		this.getEntityManager().remove(entity);
 	}
 
 	public void update(T entity){
-		this.entityManager.merge(entity);
+		this.getEntityManager().merge(entity);
 	}
 
 	public void saveOrUpdate(T entity) {
@@ -54,13 +52,13 @@ public class AbstractBaseDao<T, Oid extends Serializable> {
 	}
 	public List<T> listAll() {
 		CriteriaQuery<T> cq = this.buildCriteriaQuery();
-		TypedQuery<T> query = this.entityManager.createQuery(cq);
+		TypedQuery<T> query = this.getEntityManager().createQuery(cq);
 		return query.getResultList();
 	}
 
 	public List<T> listByExample(T example) {
 		CriteriaQuery<T> cq = this.buildCriteriaQuery();
-		TypedQuery<T> query = this.entityManager.createQuery(cq);
+		TypedQuery<T> query = this.getEntityManager().createQuery(cq);
 		return query.getResultList();
 	}
 
@@ -91,10 +89,11 @@ public class AbstractBaseDao<T, Oid extends Serializable> {
 	}
 
 	private CriteriaQuery<T> buildCriteriaQuery() {
-		CriteriaBuilder cb = this.entityManager.getCriteriaBuilder();
+		CriteriaBuilder cb = this.getEntityManager().getCriteriaBuilder();
 		CriteriaQuery<T> cq = cb.createQuery(domainClass);
 		//Root<T> root = 
 		cq.from(this.domainClass);
 		return cq;
 	}
+
 }
