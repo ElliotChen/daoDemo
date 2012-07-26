@@ -1,12 +1,13 @@
 package tw.elliot.dao.springjpa;
 
+import java.io.Serializable;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-import tw.elliot.domain.User;
-
 @Repository
-public interface UserJpaDao extends PagingAndSortingRepository<User, String>, JpaSpecificationExecutor<User>{
-	
+public interface ExampleRepository<T, ID extends Serializable> extends PagingAndSortingRepository<T, ID>, JpaSpecificationExecutor<T> {
+	public List<T> findByExample(T example);
 }

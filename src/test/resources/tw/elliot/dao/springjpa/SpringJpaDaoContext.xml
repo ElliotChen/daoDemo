@@ -49,10 +49,10 @@
 			</props>
 		</property>
 	</bean>
-	<!-- EntityManagerFactory is Thread Safe, but EntityManager is not. -->
+	<!-- EntityManagerFactory is Thread Safe, but EntityManager is not. 
 	<bean id="entityManager" class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
+	</bean>-->
 	
 	<jpa:repositories base-package="tw.elliot.dao.springjpa" transaction-manager-ref="transactionManager" entity-manager-factory-ref="entityManagerFactory"></jpa:repositories>
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">

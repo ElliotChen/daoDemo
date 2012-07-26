@@ -17,17 +17,16 @@ import tw.elliot.domain.User;
 public class UserJpaDaoTest {
 	@Autowired
 	private UserJpaDao userJpaDao;
-	
+
 	@Autowired
-	private EntityManager entityManager;
+	private UserService userService;
 	@Test
 	public void test() {
 		userJpaDao.count();
 		User example = new User();
-		ExampleSpecification<User> es = new ExampleSpecification<User>(entityManager, example);
-		es.toPredicate(null, null, null);
-		es.toPredicate(null, null, null);
-		es.toPredicate(null, null, null);
+		example.setName("Bob");
+		
+		this.userService.findByExample(example);
 	}
 
 }
