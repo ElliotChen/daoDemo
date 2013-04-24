@@ -13,10 +13,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+
 import tw.elliot.domain.core.AbstractStrOidAuditable;
 
 @Entity
-@Table(name = "T_USER")
+@Table(name = "T_USER_DAO")
 public class User extends AbstractStrOidAuditable {
 	private static final long serialVersionUID = 6973853293711914826L;
 
@@ -34,6 +37,10 @@ public class User extends AbstractStrOidAuditable {
 	@JoinTable(name = "T_USER_ROLE_MAPPING", joinColumns = @JoinColumn(name = "USER_OID"), inverseJoinColumns = @JoinColumn(name = "ROLE_OID"))
 	private List<Role> roles;
 
+	@Column(name="BIRTHDAY")
+	@Type(type="org.joda.time.contrib.hibernate.PersistentYearMonthDay")
+	private DateTime birthday;
+	
 	public User() {
 		super();
 	}
@@ -75,5 +82,13 @@ public class User extends AbstractStrOidAuditable {
 		this.roles = roles;
 	}
 
+	public DateTime getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(DateTime birthday) {
+		this.birthday = birthday;
+	}
+	
 }
 

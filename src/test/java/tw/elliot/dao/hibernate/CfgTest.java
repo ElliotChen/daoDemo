@@ -23,7 +23,7 @@ public class CfgTest {
 
 	@Test
 	public void test() {
-		SessionFactory sf = new Configuration().configure("org/elliot/dao/hibernate/hibernate.cfg.xml").buildSessionFactory();
+		SessionFactory sf = new Configuration().configure("tw/elliot/dao/hibernate/hibernate.cfg.xml").buildSessionFactory();
 		Assert.assertNotNull(sf);
 		User user = new User();
 		user.setName("X");

@@ -20,7 +20,7 @@ public class ExamplePRepositoryImpl<T, ID extends Serializable> extends SimpleJp
 		this.entityManager = entityManager;
 	}
 
-	@Override
+
 	public List<T> findByExample(T example) {
 		ExampleSpecification<T> es = new ExampleSpecification<T>(this.entityManager, example);
 		return this.findAll(es);

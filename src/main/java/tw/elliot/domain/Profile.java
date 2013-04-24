@@ -9,7 +9,7 @@ import org.hibernate.annotations.Type;
 import tw.elliot.domain.core.AbstractStrOidAuditable;
 
 @Entity
-@Table(name = "T_PROFILE")
+@Table(name = "T_PROFILE_DAO")
 public class Profile extends AbstractStrOidAuditable {
 	private static final long serialVersionUID = -8019838372522130596L;
 

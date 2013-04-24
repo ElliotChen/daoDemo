@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import tw.elliot.domain.core.AbstractStrOidAuditable;
 
 @Entity
-@Table(name = "T_ROLE")
+@Table(name = "T_ROLE_DAO")
 public class Role extends AbstractStrOidAuditable {
 	private static final long serialVersionUID = 6636999324441873024L;
 	@Column(name="NAME", length=50)
