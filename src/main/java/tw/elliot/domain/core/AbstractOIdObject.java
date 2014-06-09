@@ -14,7 +14,7 @@ public abstract class AbstractOIdObject implements Identifiable<String> {
 	private static final long serialVersionUID = -1702181490872061369L;
 
 	@Id
-	@Column(name = "OID", length = 32)
+	@Column(name = "oid", length = 32)
 	protected String oid;
 	
 	@Override

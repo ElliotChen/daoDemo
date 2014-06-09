@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -38,7 +39,7 @@ public class User extends AbstractStrOidAuditable {
 	private List<Role> roles;
 
 	@Column(name="BIRTHDAY")
-	@Type(type="org.joda.time.contrib.hibernate.PersistentYearMonthDay")
+	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime birthday;
 	
 	public User() {

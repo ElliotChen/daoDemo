@@ -18,7 +18,7 @@ public abstract class AbstractSeqIdObject implements Identifiable<Long> {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="ENTITY_SEQ")
-	@Column(name = "OID")
+	@Column(name = "oid")
 	protected Long oid;
 	
 	@Override

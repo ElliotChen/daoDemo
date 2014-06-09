@@ -12,7 +12,7 @@
 						http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 	<context:property-placeholder location="tw/elliot/dao/jpa/system.properties" />
-
+	<context:annotation-config />
 	<!-- 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="${jdbc.driverClass}" />
@@ -20,8 +20,8 @@
 		<property name="user" value="${jdbc.user}" />
 		<property name="password" value="${jdbc.password}" />
 		<property name="autoCommitOnClose" value="${jdbc.autoCommitOnClose}" />
-	</bean> -->
-	
+	</bean>
+	 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${jdbc.driverClass}" />
 		<property name="url" value="${jdbc.url}" />
@@ -46,11 +46,12 @@
 			</props>
 		</property>
 	</bean>
-	<!-- EntityManagerFactory is Thread Safe, but EntityManager is not.
+	<!-- EntityManagerFactory is Thread Safe, but EntityManager is not. 
 	<bean id="entityManager" class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
-	</bean>
-	 -->
+	</bean>-->
+	
+	<jpa:repositories base-package="tw.elliot.dao.springdata" transaction-manager-ref="transactionManager" entity-manager-factory-ref="entityManagerFactory"></jpa:repositories>
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 		<property name="dataSource" ref="dataSource" />
@@ -58,7 +59,6 @@
 
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
 
-	<context:annotation-config />
-	<context:component-scan base-package="tw.elliot.dao.jpa" />
+	
 
 </beans>

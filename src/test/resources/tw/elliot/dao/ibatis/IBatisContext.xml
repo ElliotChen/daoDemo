@@ -13,19 +13,16 @@
 
 	<context:property-placeholder location="classpath*:system.properties" />
 
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClass}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.user}" />
 		<property name="password" value="${jdbc.password}" />
 	</bean>
 
-	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="tw/elliot/dao/ibatis/sqlMapClient.xml" />
-	</bean>
-
-	<bean id="userDao" class="tw.elliot.dao.ibatis.IBatisUserDao">
-		<property name="sqlMapClient" ref="sqlMapClient" />
+		<property name="mapperLocations" value="classpath*:tw/elliot/dao/ibatis/*Mapper.xml" />
 	</bean>
 </beans>

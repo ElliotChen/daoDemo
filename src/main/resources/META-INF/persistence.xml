@@ -8,6 +8,10 @@
 		<class>tw.elliot.domain.Profile</class>
 		<class>tw.elliot.domain.Role</class>
 		<exclude-unlisted-classes/>
+		<properties>
+		    <property name="jadira.usertype.autoRegisterUserTypes" value="true" />
+            <property name="jadira.usertype.databaseZone" value="jvm" />
+		</properties>
 	</persistence-unit>
 
 </persistence>

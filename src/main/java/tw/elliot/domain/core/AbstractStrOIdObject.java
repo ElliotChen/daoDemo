@@ -13,9 +13,9 @@ public abstract class AbstractStrOIdObject implements Identifiable<String> {
 	private static final long serialVersionUID = -1702181490872061369L;
 
 	@Id
-	@GeneratedValue(generator = "system-uuid")
-	@GenericGenerator(name = "system-uuid", strategy = "uuid")
-	@Column(name = "OID", length = 32)
+	@GeneratedValue(generator="system-uuid")
+	@GenericGenerator(name="system-uuid", strategy = "uuid")
+	@Column(name = "oid", length = 32)
 	protected String oid;
 	
 	@Override
