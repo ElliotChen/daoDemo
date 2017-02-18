@@ -16,7 +16,7 @@
 	<context:component-scan base-package="tw.elliot.dao.springjpa">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
-	<!-- 
+
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="${jdbc.driverClass}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />
@@ -24,14 +24,14 @@
 		<property name="password" value="${jdbc.password}" />
 		<property name="autoCommitOnClose" value="${jdbc.autoCommitOnClose}" />
 	</bean>
-	 -->
+	<!--
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${jdbc.driverClass}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.user}" />
 		<property name="password" value="${jdbc.password}" />
 	</bean>
-	
+	 -->
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<!-- <property name="persistenceXmlLocation" value="persistence.xml" />-->
 		<property name="dataSource" ref="dataSource" />

@@ -10,14 +10,21 @@
 						http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd ">
 
 	<context:property-placeholder location="tw/elliot/dao/hibernate/system.properties"/>
-	
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClass}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="autoCommitOnClose" value="${jdbc.autoCommitOnClose}" />
+	</bean>
+	<!--
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClass}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.user}" />
 		<property name="password" value="${jdbc.password}" />
 	</bean>
-	<!--
+
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="${jdbc.driverClass}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />

@@ -44,6 +44,6 @@ public class L1UserTransactionDaoTest {
 		other.setVersion(0);
 		dao.create(other);
 		
-//		dao.delete(other);
+		dao.delete(other);
 	}
 }

@@ -4,3 +4,7 @@
 buildtools
 coverage.ec
 target/
+
+#idea project
+.idea/
+*.iml
