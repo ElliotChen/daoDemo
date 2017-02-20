@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tw.elliot.test.InitTest" tests="1" skipped="1" failures="0" errors="0" timestamp="2017-02-20T04:55:01" hostname="Elliots-MacBook-Pro.local" time="0.0">
+  <properties/>
+  <testcase name="testInit" classname="tw.elliot.test.InitTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[12:55:01.988 [Test worker] INFO  org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+12:55:01.989 [Test worker] INFO  org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@16949185, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@184f3f9f, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@3978f6e9, org.springframework.test.context.support.DirtiesContextTestExecutionListener@521b0a4c, org.springframework.test.context.transaction.TransactionalTestExecutionListener@6031a133, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@1e3d96d]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

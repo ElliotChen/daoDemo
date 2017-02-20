@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<timestamp key="date" datePattern="yyyy_MM_dd"/>
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%-20(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{80} - %msg%n</pattern>
+		</layout>
+	</appender>
+	<appender name="file" class="ch.qos.logback.core.FileAppender">
+		<file>logs/foo_${date}.log</file>
+		<append>true</append>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%-20(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{80} - %msg%n</Pattern>
+		</layout>
+	</appender>
+	<!---->
+	<appender name="roo" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/%d{yyyy/MM/dd}/roo.log</fileNamePattern>
+		</rollingPolicy>
+		<encoder>
+			<Pattern>%-20(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{80} - %msg%n</Pattern>
+		</encoder>
+	</appender>
+	
+	<logger name="org.elliot"  level="DEBUG"/>
+	<root level="INFO">
+		<appender-ref ref="stdout" />
+		<appender-ref ref="file" />
+		<appender-ref ref="roo" />
+	</root>
+</configuration>

@@ -1,0 +1,74 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'tw.elliot'
+version = '0.0.1-SNAPSHOT'
+
+description = """daoDemo"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+
+
+repositories {
+        
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+    compile group: 'ch.qos.logback', name: 'logback-classic', version:'1.2.1'
+    compile group: 'org.slf4j', name: 'jcl-over-slf4j', version:'1.7.23'
+    compile group: 'javax.validation', name: 'validation-api', version:'1.1.0.Final'
+    compile group: 'org.hibernate', name: 'hibernate-core', version:'5.2.7.Final'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version:'5.2.7.Final'
+    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version:'1.0.0.Final'
+    compile(group: 'org.hibernate', name: 'hibernate-ehcache', version:'5.2.7.Final') {
+exclude(module: 'commons-logging')
+    }
+    compile group: 'org.hibernate', name: 'hibernate-validator', version:'5.4.0.Final'
+    compile group: 'cglib', name: 'cglib-nodep', version:'3.2.4'
+    compile group: 'com.mchange', name: 'c3p0', version:'0.9.5.2'
+    compile group: 'org.apache.commons', name: 'commons-dbcp2', version:'2.1.1'
+    compile group: 'com.jolbox', name: 'bonecp-spring', version:'0.8.0.RELEASE'
+    compile group: 'org.hsqldb', name: 'hsqldb', version:'2.3.4'
+    compile group: 'com.h2database', name: 'h2', version:'1.4.193'
+    compile group: 'mysql', name: 'mysql-connector-java', version:'6.0.5'
+    compile(group: 'org.springframework', name: 'spring-context', version:'4.3.6.RELEASE') {
+exclude(module: 'commons-logging')
+    }
+    compile group: 'org.springframework', name: 'spring-context-support', version:'4.3.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-aop', version:'4.3.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-expression', version:'4.3.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-orm', version:'4.3.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-aspects', version:'4.3.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-web', version:'4.3.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-webmvc', version:'4.3.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-jdbc', version:'4.3.6.RELEASE'
+    compile group: 'org.aspectj', name: 'aspectjrt', version:'1.8.10'
+    compile group: 'org.aspectj', name: 'aspectjweaver', version:'1.8.10'
+    compile group: 'org.mybatis', name: 'mybatis', version:'3.4.2'
+    compile group: 'org.mybatis', name: 'mybatis-spring', version:'1.3.1'
+    compile group: 'com.google.guava', name: 'guava', version:'21.0'
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version:'1.11.0.RELEASE'
+    compile group: 'joda-time', name: 'joda-time', version:'2.9.7'
+    compile group: 'joda-time', name: 'joda-time-hibernate', version:'1.4'
+    compile group: 'org.jadira.usertype', name: 'usertype.jodatime', version:'2.0.1'
+    compile group: 'org.codehaus.jackson', name: 'jackson-core-asl', version:'1.9.13'
+    compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version:'1.9.13'
+    runtime group: 'org.javassist', name: 'javassist', version:'3.21.0-GA'
+    testCompile group: 'junit', name: 'junit', version:'4.12'
+    testCompile group: 'org.springframework', name: 'spring-test', version:'4.3.6.RELEASE'
+    compile(group: 'javax.servlet', name: 'javax.servlet-api', version:'3.1.0') {
+       /* This dependency was originally in the Maven provided scope, but the project was not of type war.
+       This behavior is not yet supported by Gradle, so this dependency has been converted to a compile dependency.
+       Please review and delete this closure when resolved. */
+    }
+    compile(group: 'javax.transaction', name: 'jta', version:'1.1') {
+       /* This dependency was originally in the Maven provided scope, but the project was not of type war.
+       This behavior is not yet supported by Gradle, so this dependency has been converted to a compile dependency.
+       Please review and delete this closure when resolved. */
+    }
+}

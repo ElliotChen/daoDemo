@@ -9,6 +9,34 @@
 						http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd ">
 
 	<context:property-placeholder location="tw/elliot/dao/jdbc/system.properties" />
+
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="poolName" value="springHikariCP" />
+		<property name="connectionTestQuery" value="SELECT 1" />
+		<!--<property name="dataSourceClassName" value="${jdbc.driverClass}" />-->
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+		<!--
+		<property name="dataSourceProperties">
+			<props>
+				<prop key="url">"${jdbc.url}"</prop>
+				<prop key="user">"${jdbc.user}"</prop>
+				<prop key="password">"${jdbc.password}"</prop>
+			</props>
+		</property>
+		-->
+	</bean>
+
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+		<!--
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+		-->
+	</bean>
+	<!--
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="${jdbc.driverClass}" />
 		<property name="jdbcUrl" value="${jdbc.url}" />
@@ -16,6 +44,7 @@
 		<property name="password" value="${jdbc.password}" />
 		<property name="autoCommitOnClose" value="${jdbc.autoCommitOnClose}" />
 	</bean>
+	-->
 	<!--
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClass}" />
